@@ -54,18 +54,36 @@ document.getElementById("message-area").addEventListener('change',(event)=>{
 
 document.getElementById('message-send-button').addEventListener('click',()=>{
   
-  console.log(numberOfMessage,delaySec,enteredMessage)
 
   let intervalTimeIndex = 0;
   const myInterval = setInterval(myTimer, delaySec);
 
 function myTimer() {
   intervalTimeIndex++;
-    console.log(intervalTimeIndex)
+    console.log(enteredMessage)
     if(intervalTimeIndex > numberOfMessage){
       clearInterval(myInterval);
     }
 }
 
   
+})
+
+
+
+
+{/* <msg>my message</msg>:200::1000; */}
+let textSyntax;
+document.getElementById("message-area").addEventListener('keyup',(e)=>{
+  textSyntax = e.target.value;
+})
+
+document.getElementById('generate').addEventListener('click',()=>{
+  // document.getElementById("message-area").value = 
+  let msgTag = textSyntax.search("<msg>") == 0;
+  if(msgTag){
+    let lastTagIndex = textSyntax.search("</msg>")
+    let message = textSyntax.slice(5,lastTagIndex)
+    console.log(textSyntax.search("</msg>:"))
+  }
 })
